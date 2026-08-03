@@ -28,7 +28,7 @@ devices = [
 ]
 
 for dev in devices:
-    print(f"กำลังคอนฟิกอุปกรณ์ {dev['ip']}...")
+    print(f"config in {dev['ip']}")
     
     template = env.get_template(dev['template_name'])
     rendered_config = template.render() 
