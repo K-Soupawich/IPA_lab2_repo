@@ -1,0 +1,10 @@
+vlan 101
+    name control-data
+int g0/1
+    switchport mode access
+    switchport access vlan 101
+ip access-list standard MGT_ACCESS
+    permit 172.31.177.0 0.0.0.15
+    permit 10.30.6.0 0.0.0.255
+line vty 0 4
+    access-class MGT_ACCESS in

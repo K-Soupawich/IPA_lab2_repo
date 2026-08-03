@@ -1,0 +1,22 @@
+router ospf 1 vrf control-data
+    default-information originate
+interface g0/1
+    ip ospf 1 area 0
+    ip nat inside
+interface g0/2
+    ip ospf 1 area 0
+    ip nat inside
+interface loopback0
+    ip ospf 1 area 0
+interface g0/3
+    ip nat outside
+ip access-list standard LAB2_NAT
+    permit 192.168.30.0 0.0.0.255
+    permit 192.168.20.0 0.0.0.255
+    permit 192.168.10.0 0.0.0.255
+ip nat inside source list LAB2_NAT interface g0/3 vrf control-data overload
+ip access-list standard MGT_ACCESS
+    permit 172.31.177.0 0.0.0.15
+    permit 10.30.6.0 0.0.0.255
+line vty 0 4
+    access-class MGT_ACCESS in

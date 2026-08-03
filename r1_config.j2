@@ -1,0 +1,12 @@
+router ospf 1 vrf control-data
+interface g0/1
+    ip ospf 1 area 0
+interface g0/2
+    ip ospf 1 area 0
+interface loopback0
+    ip ospf 1 area 0
+ip access-list standard MGT_ACCESS
+    permit 172.31.177.0 0.0.0.15
+    permit 10.30.6.0 0.0.0.255
+line vty 0 4
+    access-class MGT_ACCESS in
